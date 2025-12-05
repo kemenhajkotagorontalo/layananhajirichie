@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman Hasil CAT dan ADM</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --text-light: #ecf0f1;
+            --background: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* Styles for new content */
+        .section-title {
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 20px 0 10px 0;
+            text-align: center;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #555;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .info-box {
+            background-color: #f0f4f8;
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+            text-align: left;
+        }
+
+        .info-box h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #444;
+        }
+
+        .info-box li {
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            min-width: 600px; /* Ensures table doesn't squish too much on mobile */
+        }
+
+        thead {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tbody tr:hover {
+            background-color: #e8f4f8;
+            transition: background-color 0.2s ease;
+        }
+
+        /* Highlight khusus untuk Ujian Kembali */
+        .ujian-kembali {
+            background-color: #ffebee !important; /* Warna merah muda lembut */
+            color: #c0392b; /* Warna teks merah tua */
+            font-weight: bold;
+        }
+
+        .keterangan-tabel {
+            margin-top: 15px;
+            font-size: 13px;
+            font-style: italic;
+            color: #c0392b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .kotak-warna {
+            width: 15px;
+            height: 15px;
+            background-color: #ffebee;
+            border: 1px solid #c0392b;
+            display: inline-block;
+        }
+
+        /* Responsive styling for numeric columns */
+        td:nth-child(1), td:nth-child(4), td:nth-child(5), td:nth-child(6) {
+            text-align: center;
+        }
+        th:nth-child(1), th:nth-child(4), th:nth-child(5), th:nth-child(6) {
+            text-align: center;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: #e2e6ea;
+            color: #555;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #95a5a6;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            th, td {
+                padding: 10px;
+            }
+        }
+
+        /* Kop Surat Styles */
+        .kop-surat {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2c3e50;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+        }
+
+        .instansi-info {
+            text-align: center;
+        }
+
+        .instansi-induk {
+            font-size: 22px;
+            font-weight: 800;
+            color: #000;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .instansi-nama {
+            font-size: 22px;
+            font-weight: 800;
+            color: #000;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .instansi-alamat {
+            font-size: 14px;
+            color: #444;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .instansi-kontak {
+            font-size: 12px;
+            color: #555;
+            margin-top: 2px;
+        }
+
+        .instansi-kontak span {
+            margin: 0 5px;
+        }
+
+        /* Improved Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 15px;
+                margin: 0;
+                border-radius: 8px;
+            }
+
+            /* Adjust Kop Surat for Mobile */
+            .kop-surat {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                padding-bottom: 15px;
+            }
+
+            .logo {
+                width: 80px; /* Smaller logo for mobile */
+            }
+
+            .instansi-induk,
+            .instansi-nama {
+                font-size: 16px; /* Scale down text size */
+                line-height: 1.4;
+            }
+
+            .instansi-alamat {
+                font-size: 12px;
+                padding: 0 10px;
+            }
+
+            .instansi-kontak {
+                font-size: 10px;
+                padding: 0 10px;
+                word-wrap: break-word;
+            }
+
+            /* Adjust Content for Mobile */
+            h1 {
+                font-size: 18px;
+            }
+
+            .subtitle {
+                font-size: 12px;
+            }
+
+            .section-title {
+                font-size: 16px;
+                margin-top: 15px;
+            }
+
+            .intro-text p {
+                font-size: 13px;
+                text-align: justify;
+            }
+
+            .info-box {
+                padding: 15px;
+            }
+            
+            .info-box h3 {
+                font-size: 14px;
+            }
+
+            .info-box li {
+                font-size: 13px;
+            }
+
+            /* Compact Table for Mobile */
+            th, td {
+                padding: 8px 6px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="kop-surat">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Logo_Kementerian_Haji_dan_Umrah.png" alt="Logo Kementerian" class="logo">
+                <div class="instansi-info">
+                    <div class="instansi-induk">Kementerian Haji dan Umrah Republik Indonesia</div>
+                    <div class="instansi-nama">Kantor Kementerian Haji dan Umrah<br>Kota Gorontalo</div>
+                    <div class="instansi-alamat">Jl. Arief Rahman Hakim 22 Kota Gorontalo</div>
+                    <div class="instansi-kontak">
+                        Email: kemenhajkotagorontalo@gmail.com | WhatsApp: +62 822-9983-8596 | Website: https://kemenhajkotagorontalo.web.id
+                    </div>
+                </div>
+            </div>
+
+            <h1>Pengumuman Hasil Seleksi</h1>
+            <div class="subtitle">Rekapitulasi Nilai Administrasi dan Computer Assisted Test (CAT)</div>
+            
+            <div class="section-title">Daftar Nilai ADM dan CAT</div>
+            
+            <div class="intro-text">
+                <p>Berikut ini Kami sampaikan nilai Administrasi dan CAT seleksi calon petugas haji tahap I.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Teknis Penilaian</h3>
+                <ul>
+                    <li>Nilai CAT, dengan nilai antara 0 - 100 kemudian dikali 60%</li>
+                    <li>Nilai ADM berupa penjumlahan dari komponen penilaian administrasi dengan nilai antara 0 - 100 kemudian dikali 40%</li>
+                    <li>Nilai Total adalah penjumlahan dari Nilai ADM dan CAT</li>
+                </ul>
+            </div>
+        </header>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>NO</th>
+                        <th>Nama Lengkap</th>
+                        <th>Jenis Tugas</th>
+                        <th>Nilai Adm</th>
+                        <th>Nilai CAT</th>
+                        <th>Nilai Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>MUNKIZUL UMAM KAU</td><td>Pelayanan Akomodasi</td><td>18</td><td>41,4</td><td>59,4</td></tr>
+                    <tr><td>2</td><td>MOCHAMAD SOGHIR</td><td>Pelayanan Konsumsi</td><td>6</td><td>40,8</td><td>46,8</td></tr>
+                    <tr><td>3</td><td>JOHANSYAH</td><td>Pelayanan Akomodasi</td><td>8</td><td>36,6</td><td>44,6</td></tr>
+                    <tr><td>4</td><td>WAHYUDIN HIODA</td><td>Pelayanan Akomodasi</td><td>14</td><td>44,4</td><td>58,4</td></tr>
+                    <tr><td>5</td><td>NANSI ZAKARIA</td><td>Pelayanan Konsumsi</td><td>20</td><td>42,6</td><td>62,6</td></tr>
+                    <tr><td>6</td><td>SABARUDIN</td><td>Pelayanan Konsumsi</td><td>16</td><td>31,8</td><td>47,8</td></tr>
+                    <tr><td>7</td><td>SUTARJO PAPUTUNGAN</td><td>Pelayanan Akomodasi</td><td>16</td><td>36,6</td><td>52,6</td></tr>
+                    <tr><td>8</td><td>AISYA PUSPITA MARGARETH JASSIN</td><td>Pelayanan Konsumsi</td><td>8</td><td>32,4</td><td>40,4</td></tr>
+                    <tr><td>9</td><td>MASNIHAYA</td><td>Pembimbing Ibadah Kloter</td><td>22</td><td>21,6</td><td>43,6</td></tr>
+                    <tr><td>10</td><td>RIZALUDDIN TILOLANGO</td><td>Pelayanan Konsumsi</td><td>6</td><td>31,2</td><td>37,2</td></tr>
+                    <tr><td>11</td><td>VERAWATI S. DEHI</td><td>Pelayanan Akomodasi</td><td>6</td><td>35,4</td><td>41,4</td></tr>
+                    <tr><td>12</td><td>HERLINA AHMAD</td><td>Pelayanan Konsumsi</td><td>16</td><td>29,4</td><td>45,4</td></tr>
+                    <tr><td>13</td><td>FANDY NAUE</td><td>Pelayanan Akomodasi</td><td>6</td><td>49,8</td><td>55,8</td></tr>
+                    <tr><td>14</td><td>MUHAMMAD NAWIR THAMRIN</td><td>Pelayanan Akomodasi</td><td>4</td><td>48</td><td>52</td></tr>
+                    <tr><td>15</td><td>NURJANNAH HARUN</td><td>Pembimbing Ibadah Kloter</td><td>26</td><td>28,8</td><td>54,8</td></tr>
+                    <tr><td>16</td><td>ELVINA MOHAMMAD</td><td>Pelayanan Konsumsi</td><td>6</td><td>25,8</td><td>31,8</td></tr>
+                    <tr class="ujian-kembali"><td>17</td><td>MOHAMAD SYAHRIL PANEO</td><td>Pelayanan Akomodasi</td><td>6</td><td>1,8</td><td>7,8</td></tr>
+                    <tr><td>18</td><td>ISMAIL</td><td>Ketua Kloter</td><td>16</td><td>38,4</td><td>54,4</td></tr>
+                    <tr><td>19</td><td>ABDUL MOHAMAD</td><td>Pelayanan Konsumsi</td><td>6</td><td>28,8</td><td>34,8</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="keterangan-tabel">
+                <span class="kotak-warna"></span>
+                <span>* Peserta dengan tanda merah wajib mengikuti Ujian Kembali</span>
+            </div>
+        </div>
+
+        <footer>
+            <p>Kemenhaj Kota Gorontalo 2025</p>
+        </footer>
+    </div>
+
+</body>
+</html>
