@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Users, ChevronRight, ExternalLink, Award, ClipboardList, Database, CalendarClock, FileX, CreditCard, HeartPulse, Briefcase } from 'lucide-react';
+import { Users, ChevronRight, ExternalLink, Award, ClipboardList, Database, CalendarClock, FileX, CreditCard, HeartPulse, Briefcase, FileText } from 'lucide-react';
 import DataModal from './DataModal';
+import PengumumanSeleksi from './PengumumanSeleksi';
 
 export const DataJemaah: React.FC = () => {
   const [isDataModalOpen, setIsDataModalOpen] = useState(false);
@@ -164,6 +165,8 @@ export const Regulasi: React.FC = () => (
 );
 
 export const Rekrutmen: React.FC = () => {
+  const [isPengumumanOpen, setIsPengumumanOpen] = useState(false);
+
   return (
   <section id="rekrutmen" className="py-24 bg-gray-50">
     <div className="container mx-auto px-6">
@@ -179,17 +182,32 @@ export const Rekrutmen: React.FC = () => {
             Pendaftaran dan seleksi Petugas Penyelenggara Ibadah Haji (PPIH) Kloter maupun Arab Saudi dilakukan secara terpusat dan online. Untuk informasi lengkap mengenai persyaratan, jadwal, dan tata cara pendaftaran, silakan kunjungi portal resmi rekrutmen Kementerian Agama RI.
           </p>
           
-          <a 
-            href="https://petugas.haji.go.id" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-black-900 text-white font-bold rounded-full hover:bg-gold-500 hover:text-black-900 transition-all transform hover:scale-105 shadow-lg group"
-          >
-            Kunjungi Portal Pendaftaran
-            <ExternalLink size={20} className="group-hover:rotate-45 transition-transform" />
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="https://petugas.haji.go.id" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-black-900 text-white font-bold rounded-full hover:bg-gold-500 hover:text-black-900 transition-all transform hover:scale-105 shadow-lg group"
+            >
+              Kunjungi Portal Pendaftaran
+              <ExternalLink size={20} className="group-hover:rotate-45 transition-transform" />
+            </a>
+            
+            <button 
+              onClick={() => setIsPengumumanOpen(true)}
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-gold-500 text-black-900 font-bold rounded-full hover:bg-gold-400 transition-all transform hover:scale-105 shadow-lg group"
+            >
+              <FileText size={20} />
+              Pengumuman Nilai ADM & CAT Tahap I
+            </button>
+          </div>
         </div>
       </div>
     </div>
+
+    <PengumumanSeleksi 
+      isOpen={isPengumumanOpen} 
+      onClose={() => setIsPengumumanOpen(false)} 
+    />
   </section>
 )};
