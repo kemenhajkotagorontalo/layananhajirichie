@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman Hasil Seleksi PPIH Tahap I - Kota Gorontalo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tema: {
+                            gold: '#D4AF37',       /* Metallic Gold */
+                            goldDark: '#B8860B',   /* Dark Goldenrod */
+                            goldLight: '#FFF8DC',  /* Cornsilk */
+                            black: '#1a1a1a',      /* Rich Black */
+                            blue: '#1e3a8a',       /* Dark Blue Accent */
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif"', 'serif'],
+                        sans: ['"Poppins"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; }
+            .shadow-xl { box-shadow: none !important; }
+            .print-border { border: 1px solid #000; }
+            .page-break { page-break-before: always; }
+        }
+        /* Mengubah pola background dari hijau ke nuansa emas/coklat pudar */
+        .bg-pattern {
+            background-color: #ffffff;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        /* Custom scrollbar for tables on mobile */
+        .overflow-x-auto::-webkit-scrollbar {
+            height: 6px;
+        }
+        .overflow-x-auto::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .overflow-x-auto::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans bg-pattern min-h-screen flex flex-col">
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-2 md:px-4 py-4 md:py-8 max-w-5xl">
+        
+        <!-- Official Letter Container -->
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden border border-tema-gold">
+            
+            <!-- Kop Surat Image -->
+            <div class="w-full border-b-4 border-double border-tema-black">
+                <img src="https://i.imgur.com/JN2io4p.png" alt="Kop Surat Kementerian Agama" class="w-full h-auto block">
+            </div>
+
+            <!-- Letter Header -->
+            <div class="p-6 md:p-8 border-b-2 border-double border-tema-goldDark text-center relative">
+                <h2 class="font-serif font-bold text-xl md:text-3xl text-tema-black uppercase mb-1">Pengumuman</h2>
+                <p class="font-serif text-sm md:text-base text-gray-600 font-bold mb-3">NOMOR: PENG-030/Kk.26.03/2025</p>
+                <h3 class="font-serif text-base md:text-xl text-tema-black font-bold mb-4 leading-relaxed">Hasil Ujian CAT dan Nilai Administrasi<br>Seleksi PPIH Tahap I Tahun 2026</h3>
+                <p class="text-sm md:text-base text-gray-600 max-w-2xl mx-auto italic">
+                    Berikut adalah hasil seleksi berdasarkan rekapitulasi nilai administrasi dan Computer Assisted Test (CAT), dikelompokkan berdasarkan jenis tugas dan diurutkan berdasarkan nilai tertinggi.
+                </p>
+            </div>
+
+            <!-- Controls (Search) - No Print -->
+            <div class="bg-tema-goldLight px-4 md:px-6 py-4 border-b border-tema-gold flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4 no-print">
+                <div class="relative w-full">
+                    <!-- Aksen Biru pada border focus -->
+                    <input type="text" id="searchInput" onkeyup="filterAllTables()" placeholder="Cari Nama Peserta..." class="w-full pl-10 pr-4 py-3 md:py-2 rounded-lg border border-gray-400 focus:outline-none focus:border-tema-blue focus:ring-1 focus:ring-tema-blue transition shadow-sm text-sm md:text-base text-tema-black">
+                    <div class="absolute left-3 top-3.5 md:top-2.5 text-tema-goldDark">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class="w-full md:w-auto">
+                    <!-- Tombol Hitam dengan Teks Emas (Atau Biru sesuai request "sedikit biru") -->
+                    <!-- Saya gunakan Biru di sini sebagai aksen utama tombol agar terlihat jelas (call to action) -->
+                    <button onclick="window.print()" class="w-full md:w-auto bg-tema-blue hover:bg-blue-900 text-white px-6 py-3 md:py-2 rounded-lg text-sm font-medium transition shadow-sm flex items-center justify-center gap-2 whitespace-nowrap border border-blue-900">
+                        <i class="fas fa-print"></i> Cetak PDF
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content Body -->
+            <div class="p-4 md:p-8 space-y-8">
+                
+                <!-- SECTION 1: KETUA KLOTER -->
+                <div class="result-section">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-black text-tema-gold p-2 rounded-lg shrink-0 border border-tema-gold"><i class="fas fa-user-tie"></i></span>
+                        <h4 class="text-lg md:text-xl font-bold text-tema-black border-b-2 border-tema-gold pb-1 pr-4 inline-block">Ketua Kloter</h4>
+                    </div>
+                    <div class="overflow-x-auto rounded-lg border border-tema-gold shadow-sm">
+                        <table class="w-full min-w-[600px] md:min-w-full text-left border-collapse bg-white">
+                            <thead class="bg-tema-black text-tema-gold text-xs md:text-sm font-bold uppercase tracking-wider">
+                                <tr>
+                                    <th class="p-3 border-b border-tema-gold text-center w-12">No</th>
+                                    <th class="p-3 border-b border-tema-gold">Nama Lengkap</th>
+                                    <th class="p-3 border-b border-tema-gold text-center w-24">Nilai Adm</th>
+                                    <th class="p-3 border-b border-tema-gold text-center w-24">Nilai CAT</th>
+                                    <th class="p-3 border-b border-tema-gold text-center w-24 bg-gray-900 text-white">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm md:text-base divide-y divide-gray-200">
+                                <!-- Rank 1 -->
+                                <tr class="bg-yellow-100 hover:bg-yellow-200 transition border-l-4 border-l-tema-gold">
+                                    <td class="p-3 text-center font-bold text-black">18</td>
+                                    <td class="p-3 font-bold text-black flex items-center gap-2">
+                                        ISMAIL <i class="fas fa-star text-tema-gold text-xs animate-pulse"></i>
+                                    </td>
+                                    <td class="p-3 text-center text-black">16</td>
+                                    <td class="p-3 text-center text-black">38.4</td>
+                                    <td class="p-3 text-center font-bold text-black bg-tema-goldLight border-l border-gray-200 text-lg">54.4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- SECTION 2: PEMBIMBING IBADAH KLOTER -->
+                <div class="result-section">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-black text-tema-gold p-2 rounded-lg shrink-0 border border-tema-gold"><i class="fas fa-quran"></i></span>
+                        <h4 class="text-lg md:text-xl font-bold text-tema-black border-b-2 border-tema-gold pb-1 pr-4 inline-block">Pembimbing Ibadah Kloter</h4>
+                    </div>
+                    <div class="overflow-x-auto rounded-lg border border-tema-gold shadow-sm">
+                        <table class="w-full min-w-[600px] md:min-w-full text-left border-collapse bg-white">
+                            <thead class="bg-tema-black text-tema-gold text-xs md:text-sm font-bold uppercase tracking-wider">
+                                <tr>
+                                    <th class="p-3 border-b border-tema-gold text-center w-12">No</th>
+                                    <th class="p-3 border-b border-tema-gold">Nama Lengkap</th>
+                                    <th class="p-3 border-b border-tema-gold text-center w-24">Nilai Adm</th>
+                                    <th class="p-3 border-b border-tema-gold text-center w-24">Nilai CAT</th>
+                                    <th class="p-3 border-b border-tema-gold text-center w-24 bg-gray-900 text-white">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm md:text-base divide-y divide-gray-200">
+                                <!-- Rank 1 -->
+                                <tr class="bg-yellow-100 hover:bg-yellow-200 transition border-l-4 border-l-tema-gold">
+                                    <td class="p-3 text-center font-bold text-black">15</td>
+                                    <td class="p-3 font-bold text-black flex items-center gap-2">
+                                        NURJANNAH HARUN <i class="fas fa-star text-tema-gold text-xs animate-pulse"></i>
+                                    </td>
+                                    <td class="p-3 text-center text-black">26</td>
+                                    <td class="p-3 text-center text-black">28.8</td>
+                                    <td class="p-3 text-center font-bold text-black bg-tema-goldLight border-l border-gray-200 text-lg">54.8</td>
+                                </tr>
+                                <!-- Rank 2 -->
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-3 text-center text-gray-600">9</td>
+                                    <td class="p-3 font-medium text-gray-800">MASNIHAYA</td>
+                                    <td class="p-3 text-center text-gray-800">22</td>
+                                    <td class="p-3 text-center text-gray-800">21.6</td>
+                                    <td class="p-3 text-center font-bold text-gray-900 bg-gray-50 border-l border-gray-200">43.6</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: PELAYANAN AKOMODASI -->
+                <div class="result-section">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-black text-tema-gold p-2 rounded-lg shrink-0 border border-tema-gold"><i class="fas fa-hotel"></i></span>
+                        <h4 class="text-lg md:text-xl font-bold text-tema-black border-b-2 border-tema-gold pb-1 pr-4 inline-block">Pelayanan Akomodasi</h4>
+                    </div>
+                    <div class="overflow-x-auto rounded-lg border border-tema-gold shadow-sm">
+                        <table class="w-full min-w-[600px] md:min-w-full text-left border-collapse bg-white">
+                            <thead class="bg-tema-black text-tema-gold text-xs md:text-sm font-bold uppercase tracking-wider">
+                                <tr>
+                                    <th class="p-3 border-b border-tema-gold text-center w-12">No</th>
+                                    <th class="p-3 border-b border-tema-gold">Nama Lengkap</th>
+                                    <th class="p-3 border-b border-tema-gold text-center w-24">Nilai Adm</th>
+                                    <th class="p-3 border-b border-tema-gold text-center w-24">Nilai CAT</th>
+                                    <th class="p-3 border-b border-tema-gold text-center w-24 bg-gray-900 text-white">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm md:text-base divide-y divide-gray-200">
+                                <!-- Rank 1 -->
+                                <tr class="bg-yellow-100 hover:bg-yellow-200 transition border-l-4 border-l-tema-gold">
+                                    <td class="p-3 text-center font-bold text-black">1</td>
+                                    <td class="p-3 font-bold text-black flex items-center gap-2">
+                                        MUNKIZUL UMAM KAU <i class="fas fa-star text-tema-gold text-xs animate-pulse"></i>
+                                    </td>
+                                    <td class="p-3 text-center text-black">18</td>
+                                    <td class="p-3 text-center text-black">41.4</td>
+                                    <td class="p-3 text-center font-bold text-black bg-tema-goldLight border-l border-gray-200 text-lg">59.4</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-3 text-center text-gray-600">4</td>
+                                    <td class="p-3 font-medium text-gray-800">WAHYUDIN HIODA</td>
+                                    <td class="p-3 text-center text-gray-800">14</td>
+                                    <td class="p-3 text-center text-gray-800">44.4</td>
+                                    <td class="p-3 text-center font-bold text-gray-900 bg-gray-50 border-l border-gray-200">58.4</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-3 text-center text-gray-600">13</td>
+                                    <td class="p-3 font-medium text-gray-800">FANDY NAUE</td>
+                                    <td class="p-3 text-center text-gray-800">6</td>
+                                    <td class="p-3 text-center text-gray-800">49.8</td>
+                                    <td class="p-3 text-center font-bold text-gray-900 bg-gray-50 border-l border-gray-200">55.8</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-3 text-center text-gray-600">7</td>
+                                    <td class="p-3 font-medium text-gray-800">SUTARJO PAPUTUNGAN</td>
+                                    <td class="p-3 text-center text-gray-800">16</td>
+                                    <td class="p-3 text-center text-gray-800">36.6</td>
+                                    <td class="p-3 text-center font-bold text-gray-900 bg-gray-50 border-l border-gray-200">52.6</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-3 text-center text-gray-600">14</td>
+                                    <td class="p-3 font-medium text-gray-800">MUHAMMAD NAWIR THAMRIN</td>
+                                    <td class="p-3 text-center text-gray-800">4</td>
+                                    <td class="p-3 text-center text-gray-800">48</td>
+                                    <td class="p-3 text-center font-bold text-gray-900 bg-gray-50 border-l border-gray-200">52</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-3 text-center text-gray-600">17</td>
+                                    <td class="p-3 font-medium text-gray-800">MOHAMAD SYAHRIL PANEO</td>
+                                    <td class="p-3 text-center text-gray-800">6</td>
+                                    <td class="p-3 text-center text-gray-800">43.8</td>
+                                    <td class="p-3 text-center font-bold text-gray-900 bg-gray-50 border-l border-gray-200">49.8</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-3 text-center text-gray-600">3</td>
+                                    <td class="p-3 font-medium text-gray-800">JOHANSYAH</td>
+                                    <td class="p-3 text-center text-gray-800">8</td>
+                                    <td class="p-3 text-center text-gray-800">36.6</td>
+                                    <td class="p-3 text-center font-bold text-gray-900 bg-gray-50 border-l border-gray-200">44.6</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-3 text-center text-gray-600">11</td>
+                                    <td class="p-3 font-medium text-gray-800">VERAWATI S. DEHI</td>
+                                    <td class="p-3 text-center text-gray-800">6</td>
+                                    <td class="p-3 text-center text-gray-800">35.4</td>
+                                    <td class="p-3 text-center font-bold text-gray-900 bg-gray-50 border-l border-gray-200">41.4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- SECTION 4: PELAYANAN KONSUMSI -->
+                <div class="result-section">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-black text-tema-gold p-2 rounded-lg shrink-0 border border-tema-gold"><i class="fas fa-utensils"></i></span>
+                        <h4 class="text-lg md:text-xl font-bold text-tema-black border-b-2 border-tema-gold pb-1 pr-4 inline-block">Pelayanan Konsumsi</h4>
+                    </div>
+                    <div class="overflow-x-auto rounded-lg border border-tema-gold shadow-sm">
+                        <table class="w-full min-w-[600px] md:min-w-full text-left border-collapse bg-white">
+                            <thead class="bg-tema-black text-tema-gold text-xs md:text-sm font-bold uppercase tracking-wider">
+                                <tr>
+                                    <th class="p-3 border-b border-tema-gold text-center w-12">No</th>
+                                    <th class="p-3 border-b border-tema-gold">Nama Lengkap</th>
+                                    <th class="p-3 border-b border-tema-gold text-center w-24">Nilai Adm</th>
+                                    <th class="p-3 border-b border-tema-gold text-center w-24">Nilai CAT</th>
+                                    <th class="p-3 border-b border-tema-gold text-center w-24 bg-gray-900 text-white">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm md:text-base divide-y divide-gray-200">
+                                <!-- Rank 1 -->
+                                <tr class="bg-yellow-100 hover:bg-yellow-200 transition border-l-4 border-l-tema-gold">
+                                    <td class="p-3 text-center font-bold text-black">5</td>
+                                    <td class="p-3 font-bold text-black flex items-center gap-2">
+                                        NANSI ZAKARIA <i class="fas fa-star text-tema-gold text-xs animate-pulse"></i>
+                                    </td>
+                                    <td class="p-3 text-center text-black">20</td>
+                                    <td class="p-3 text-center text-black">42.6</td>
+                                    <td class="p-3 text-center font-bold text-black bg-tema-goldLight border-l border-gray-200 text-lg">62.6</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-3 text-center text-gray-600">6</td>
+                                    <td class="p-3 font-medium text-gray-800">SABARUDIN</td>
+                                    <td class="p-3 text-center text-gray-800">16</td>
+                                    <td class="p-3 text-center text-gray-800">31.8</td>
+                                    <td class="p-3 text-center font-bold text-gray-900 bg-gray-50 border-l border-gray-200">47.8</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-3 text-center text-gray-600">2</td>
+                                    <td class="p-3 font-medium text-gray-800">MOCHAMAD SOGHIR</td>
+                                    <td class="p-3 text-center text-gray-800">6</td>
+                                    <td class="p-3 text-center text-gray-800">40.8</td>
+                                    <td class="p-3 text-center font-bold text-gray-900 bg-gray-50 border-l border-gray-200">46.8</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-3 text-center text-gray-600">12</td>
+                                    <td class="p-3 font-medium text-gray-800">HERLINA AHMAD</td>
+                                    <td class="p-3 text-center text-gray-800">16</td>
+                                    <td class="p-3 text-center text-gray-800">29.4</td>
+                                    <td class="p-3 text-center font-bold text-gray-900 bg-gray-50 border-l border-gray-200">45.4</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-3 text-center text-gray-600">8</td>
+                                    <td class="p-3 font-medium text-gray-800">AISYA PUSPITA MARGARETH JASSIN</td>
+                                    <td class="p-3 text-center text-gray-800">8</td>
+                                    <td class="p-3 text-center text-gray-800">32.4</td>
+                                    <td class="p-3 text-center font-bold text-gray-900 bg-gray-50 border-l border-gray-200">40.4</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-3 text-center text-gray-600">10</td>
+                                    <td class="p-3 font-medium text-gray-800">RIZALUDDIN TILOLANGO</td>
+                                    <td class="p-3 text-center text-gray-800">6</td>
+                                    <td class="p-3 text-center text-gray-800">31.2</td>
+                                    <td class="p-3 text-center font-bold text-gray-900 bg-gray-50 border-l border-gray-200">37.2</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-3 text-center text-gray-600">19</td>
+                                    <td class="p-3 font-medium text-gray-800">ABDUL MOHAMAD</td>
+                                    <td class="p-3 text-center text-gray-800">6</td>
+                                    <td class="p-3 text-center text-gray-800">28.8</td>
+                                    <td class="p-3 text-center font-bold text-gray-900 bg-gray-50 border-l border-gray-200">34.8</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-3 text-center text-gray-600">16</td>
+                                    <td class="p-3 font-medium text-gray-800">ELVINA MOHAMMAD</td>
+                                    <td class="p-3 text-center text-gray-800">6</td>
+                                    <td class="p-3 text-center text-gray-800">25.8</td>
+                                    <td class="p-3 text-center font-bold text-gray-900 bg-gray-50 border-l border-gray-200">31.8</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Signature Section -->
+            <div class="p-6 md:p-12 mt-4 bg-white border-t border-gray-200 flex flex-col md:flex-row justify-end page-break">
+                <div class="text-center md:text-right w-full md:w-1/3">
+                    <p class="mb-1 text-gray-600">Kota Gorontalo, 8 Desember 2025</p>
+                    <p class="font-bold text-gray-800 mb-16">Kepala Kantor,</p>
+                    
+                    <div class="relative inline-block text-center">
+                        <p class="font-bold text-lg text-gray-900 uppercase underline decoration-2 underline-offset-4 decoration-tema-gold">Abdul Qohar Salilama</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 text-sm mt-8 pb-4 no-print">
+            &copy; 2025 Kementerian Haji dan Umrah Kota Gorontalo.
+        </footer>
+    </main>
+
+    <script>
+        // Updated filter function to handle multiple tables
+        function filterAllTables() {
+            var input, filter, sections, tables, tr, td, i, j, txtValue, hasVisibleRows;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            
+            // Get all sections containing tables
+            sections = document.getElementsByClassName("result-section");
+
+            for (i = 0; i < sections.length; i++) {
+                var table = sections[i].getElementsByTagName("table")[0];
+                var tr = table.getElementsByTagName("tr");
+                hasVisibleRows = false;
+
+                // Loop through all table rows, starting from 1 to skip header
+                for (j = 1; j < tr.length; j++) {
+                    td = tr[j].getElementsByTagName("td")[1]; // Column 2 (Name)
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[j].style.display = "";
+                            hasVisibleRows = true;
+                        } else {
+                            tr[j].style.display = "none";
+                        }
+                    }
+                }
+
+                // Optional: Hide the entire section if no rows match, 
+                // but usually better to keep headers visible or show "No results"
+                if (!hasVisibleRows && filter !== "") {
+                     sections[i].style.opacity = "0.5"; // Dim sections with no matches
+                } else {
+                     sections[i].style.opacity = "1";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
