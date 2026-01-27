@@ -6,7 +6,7 @@ interface DataModalProps {
   onClose: () => void;
 }
 
-const DATA_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQxBodU-gX5_PMP8aDAATKl1-k_O3NKwyGFuzjfLXv0uBiX8-2xCDPdakRF-bYepE_arkG-4Jdjf4Ad/pub?gid=1782468016&single=true&output=csv";
+const DATA_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQxBodU-gX5_PMP8aDAATKl1-k_O3NKwyGFuzjfLXv0uBiX8-2xCDPdakRF-bYepE_arkG-4Jdjf4Ad/pub?gid=1093008429&single=true&output=csv";
 
 // Kolom yang ingin ditampilkan (sesuai request)
 const DISPLAY_COLUMNS = ['KD_PORSI', 'NAMA', 'KATEGORI', 'LUNAS', 'PASPOR', 'BIOVISA'];
@@ -75,6 +75,15 @@ const DataModal: React.FC<DataModalProps> = ({ isOpen, onClose }) => {
 
       // --- FILTERING LOGIC ---
       
+      const kdPorsiIndex = rawHeaders.findIndex(h => h.toUpperCase() === 'KD_PORSI');
+      const namaIndex = rawHeaders.findIndex(h => h.toUpperCase() === 'NAMA');
+
+      const nonEmptyRows = rawRows.filter(row => {
+        const kdPorsi = row[kdPorsiIndex];
+        const nama = row[namaIndex];
+        return (kdPorsi && kdPorsi.trim() !== '') && (nama && nama.trim() !== '');
+      });
+
       // 1. Find indices of requested columns in the raw CSV
       const columnIndices = DISPLAY_COLUMNS.map(targetCol => 
         rawHeaders.findIndex(h => h.toUpperCase() === targetCol.toUpperCase())
@@ -87,7 +96,7 @@ const DataModal: React.FC<DataModalProps> = ({ isOpen, onClose }) => {
       const finalHeaders = validIndices.map(item => item.name);
       
       // 3. Map rows to match the new column order
-      const finalRows = rawRows.map(row => 
+      const finalRows = nonEmptyRows.map(row => 
         validIndices.map(item => row[item.idx] || '-') // Use '-' if data is missing
       );
 
